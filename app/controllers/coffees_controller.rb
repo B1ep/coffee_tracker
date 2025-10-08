@@ -3,7 +3,7 @@ class CoffeesController < ApplicationController
 
   # GET /coffees or /coffees.json
   def index
-    @coffees = Coffee.all
+  @coffees = Coffee.order(created_at: :desc)
   end
 
   # GET /coffees/1 or /coffees/1.json
@@ -65,6 +65,6 @@ class CoffeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def coffee_params
-      params.expect(coffee: [ :name, :roaster, :origin, :roast_level, :tasting_notes, :rating, :website_url, :date_tried ])
+      params.require(:coffee).permit(:name, :roaster, :origin, :roast_level, :tasting_notes, :rating, :website_url, :date_tried, :image)
     end
 end

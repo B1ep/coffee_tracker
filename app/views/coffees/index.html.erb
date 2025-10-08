@@ -1,59 +1,118 @@
-<div class="bg-gradient-to-br from-amber-50 to-orange-100 min-h-screen">
-  <div class="max-w-7xl mx-auto px-4 py-8">
-    <!-- Header -->
-    <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
-      <div class="flex items-center justify-between">
-        <h1 class="text-4xl font-bold text-gray-800 flex items-center gap-3">
-          ☕ My Coffee Journal
-        </h1>
-        <%= link_to "Add Coffee", new_coffee_path, class: "bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors" %>
-      </div>
+<div style="margin: 0; padding: 0; min-height: 100vh;">
+  
+  <!-- Brown Header - Full Width -->
+  <div style="background-color: #8b6f47; width: 100%; padding: 80px 24px;">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+      <h1 style="color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-size: 96px; font-weight: 700; margin: 0 0 24px 0; letter-spacing: -2px;">
+        COLIN'S COFFEE
+      </h1>
+      <h2 style="color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-size: 28px; font-weight: 300; margin: 0;">
+        Brewing in Park Slope, Brooklyn
+      </h2>
     </div>
+  </div>
 
-    <!-- Coffee Gallery -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <% @coffees.each do |coffee| %>
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105">
-          <% if coffee.image.attached? %>
-            <%= image_tag coffee.image, class: "w-full h-48 object-cover" %>
-          <% else %>
-            <div class="w-full h-48 bg-gradient-to-br from-amber-200 to-orange-300 flex items-center justify-center">
-              <span class="text-6xl">☕</span>
-            </div>
-          <% end %>
-          
-          <div class="p-5">
-            <h3 class="text-xl font-bold text-gray-800 mb-2"><%= coffee.name %></h3>
-            <p class="text-gray-600 font-semibold mb-3"><%= coffee.roaster %></p>
-            
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-amber-500">⭐</span>
-              <span class="font-bold text-lg"><%= coffee.rating %>/10</span>
-            </div>
-            
-            <% if coffee.origin.present? %>
-              <div class="flex items-center gap-2 text-gray-600 text-sm mb-3">
-                <span>📍</span>
-                <span><%= coffee.origin %></span>
-              </div>
-            <% end %>
-            
-            <div class="flex gap-2">
-              <%= link_to "View", coffee_path(coffee), class: "flex-1 bg-amber-600 hover:bg-amber-700 text-white text-center py-2 rounded-lg font-semibold transition-colors" %>
-              <%= link_to "Edit", edit_coffee_path(coffee), class: "flex-1 bg-gray-600 hover:bg-gray-700 text-white text-center py-2 rounded-lg font-semibold transition-colors" %>
-            </div>
-          </div>
+  <!-- Light Green Content - Full Width -->
+  <div style="background-color: #a8c5a0; width: 100%; padding: 48px 24px; min-height: 100vh;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      
+      <!-- Add New Coffee Button -->
+      <div style="text-align: center; margin-bottom: 48px;">
+        <%= link_to new_coffee_path, style: "display: inline-block; background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding: 12px 32px; border-radius: 8px; text-decoration: none; transition: opacity 0.2s;" do %>
+          + Add New Coffee
+        <% end %>
+      </div>
+
+      <!-- Empty State -->
+      <% if @coffees.empty? %>
+        <div style="text-align: center; padding: 80px 24px; background-color: #f5f1e8; border-radius: 16px;">
+          <div style="font-size: 96px; margin-bottom: 24px; opacity: 0.3;">☕</div>
+          <h3 style="color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 300; margin: 0 0 16px 0;">
+            No reviews yet
+          </h3>
+          <p style="color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 300; margin: 0;">
+            Start your coffee journey by adding your first review
+          </p>
         </div>
       <% end %>
-    </div>
 
-    <% if @coffees.empty? %>
-      <div class="text-center py-20">
-        <div class="text-8xl mb-4">☕</div>
-        <h3 class="text-2xl font-bold text-gray-600 mb-2">No coffees yet</h3>
-        <p class="text-gray-500 mb-4">Start tracking your coffee journey!</p>
-        <%= link_to "Add Your First Coffee", new_coffee_path, class: "bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold inline-block transition-colors" %>
-      </div>
-    <% end %>
+      <!-- Coffee Reviews - Vertical Stack -->
+      <% @coffees.each do |coffee| %>
+        <div style="background-color: #f5f1e8; border-radius: 16px; padding: 32px; margin-bottom: 48px; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          
+          <!-- Edit Button (Top Right) -->
+          <div style="position: absolute; top: 16px; right: 16px;">
+            <%= link_to edit_coffee_path(coffee), style: "display: inline-block; background-color: #5a7c69; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 14px;" do %>
+              Edit
+            <% end %>
+          </div>
+
+          <!-- Image (Centered) -->
+          <div style="text-align: center; margin-bottom: 24px;">
+            <% if coffee.image.attached? %>
+              <%= link_to coffee_path(coffee) do %>
+                <%= image_tag coffee.image, style: "max-height: 400px; max-width: 100%; height: auto; width: auto; display: inline-block; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" %>
+              <% end %>
+            <% else %>
+              <%= link_to coffee_path(coffee) do %>
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 300px; height: 400px; background: linear-gradient(135deg, #5a7c69 0%, #2d4a3e 100%); border-radius: 12px;">
+                  <span style="font-size: 96px; color: #f5f1e8; opacity: 0.4;">☕</span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <!-- Coffee Info (Centered) -->
+          <div style="text-align: center;">
+            <%= link_to coffee_path(coffee), style: "text-decoration: none;" do %>
+              <h2 style="color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 400; margin: 0 0 8px 0;">
+                <%= coffee.name %>
+              </h2>
+              
+              <p style="color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 300; margin: 0 0 12px 0;">
+                <%= coffee.roaster %>
+              </p>
+              
+              <% if coffee.origin.present? %>
+                <p style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 300; margin: 0 0 16px 0;">
+                  <%= coffee.origin %>
+                </p>
+              <% end %>
+              
+              <!-- Roast Level Bar -->
+              <% if coffee.roast_level.present? %>
+                <div style="margin: 0 auto 16px auto; max-width: 300px;">
+                  <p style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0; text-align: center;">
+                    <%= coffee.roast_level_text %> Roast
+                  </p>
+                  
+                  <div style="position: relative; height: 8px; background: linear-gradient(to right, #f5deb3 0%, #d2b48c 25%, #8b6f47 50%, #654321 75%, #3e2723 100%); border-radius: 4px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);">
+                    <% roast_value = coffee.roast_level.to_i %>
+                    <div style="position: absolute; top: 50%; left: <%= ((roast_value - 1) / 9.0 * 100).round(1) %>%; transform: translate(-50%, -50%); width: 14px; height: 14px; background-color: #2d4a3e; border: 2px solid #f5f1e8; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3);"></div>
+                  </div>
+                </div>
+              <% end %>
+              
+              <!-- Brief Description (Tasting Notes) -->
+              <% if coffee.tasting_notes.present? %>
+                <p style="color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 300; margin: 0 0 16px 0; line-height: 1.5; max-width: 600px; margin-left: auto; margin-right: auto;">
+                  <%= coffee.tasting_notes %>
+                </p>
+              <% end %>
+              
+              <!-- Score Badge -->
+              <div style="display: inline-flex; align-items: center; gap: 8px; background-color: #2d4a3e; padding: 8px 24px; border-radius: 9999px;">
+                <span style="color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-size: 28px; font-weight: 300;">
+                  <%= coffee.rating %><span style="font-size: 18px; opacity: 0.7;">/10</span>
+                </span>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+      <% end %>
+
+    </div>
   </div>
+
 </div>

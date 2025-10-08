@@ -1,75 +1,114 @@
-<div class="bg-gradient-to-br from-amber-50 to-orange-100 min-h-screen py-8">
-  <div class="max-w-4xl mx-auto px-4">
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-      <% if @coffee.image.attached? %>
-        <%= image_tag @coffee.image, class: "w-full h-96 object-cover" %>
-      <% else %>
-        <div class="w-full h-96 bg-gradient-to-br from-amber-200 to-orange-300 flex items-center justify-center">
-          <span class="text-9xl">☕</span>
-        </div>
+<div style="margin: 0; padding: 0; min-height: 100vh;">
+  
+  <!-- Brown Header -->
+  <div style="background-color: #8b6f47; width: 100%; padding: 48px 24px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <%= link_to coffees_path, style: "display: inline-flex; align-items: center; gap: 8px; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-weight: 300; text-decoration: none; font-size: 18px;" do %>
+        <span>←</span>
+        <span>Back to Reviews</span>
       <% end %>
-      
-      <div class="p-8">
-        <h1 class="text-4xl font-bold text-gray-800 mb-2"><%= @coffee.name %></h1>
-        <p class="text-2xl text-gray-600 font-semibold mb-6"><%= @coffee.roaster %></p>
+    </div>
+  </div>
+
+  <!-- Light Green Content -->
+  <div style="background-color: #a8c5a0; width: 100%; padding: 48px 24px; min-height: 100vh;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div style="background-color: #f5f1e8; border-radius: 16px; padding: 48px; box-shadow: 0 10px 15px rgba(0,0,0,0.1);">
         
-        <div class="grid grid-cols-2 gap-6 mb-6">
-          <div>
-            <p class="text-sm text-gray-500 font-semibold mb-1">Rating</p>
-            <div class="flex items-center gap-2">
-              <span class="text-amber-500 text-2xl">⭐</span>
-              <span class="text-3xl font-bold"><%= @coffee.rating %>/10</span>
+        <!-- Image (Centered) -->
+        <div style="text-align: center; margin-bottom: 32px;">
+          <% if @coffee.image.attached? %>
+            <%= image_tag @coffee.image, style: "max-height: 500px; max-width: 100%; height: auto; width: auto; display: inline-block; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" %>
+          <% else %>
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 400px; height: 500px; background: linear-gradient(135deg, #5a7c69 0%, #2d4a3e 100%); border-radius: 12px;">
+              <span style="font-size: 128px; color: #f5f1e8; opacity: 0.4;">☕</span>
             </div>
-          </div>
-          
-          <div>
-            <p class="text-sm text-gray-500 font-semibold mb-1">Roast Level</p>
-            <p class="text-xl font-semibold capitalize"><%= @coffee.roast_level %></p>
-          </div>
+          <% end %>
+        </div>
+
+        <!-- Title Section -->
+        <div style="text-align: center; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #d4c4a8;">
+          <h1 style="color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; margin: 0 0 12px 0;">
+            <%= @coffee.name %>
+          </h1>
+          <p style="color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-size: 28px; font-weight: 300; margin: 0 0 16px 0;">
+            <%= @coffee.roaster %>
+          </p>
           
           <% if @coffee.origin.present? %>
-            <div>
-              <p class="text-sm text-gray-500 font-semibold mb-1">Origin</p>
-              <div class="flex items-center gap-2">
-                <span>📍</span>
-                <span class="text-xl font-semibold"><%= @coffee.origin %></span>
+            <p style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 300; margin: 0 0 20px 0;">
+              <%= @coffee.origin %>
+            </p>
+          <% end %>
+          
+          <!-- Tasting Notes -->
+          <% if @coffee.tasting_notes.present? %>
+            <p style="color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 300; margin: 0 0 20px 0; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto;">
+              <%= @coffee.tasting_notes %>
+            </p>
+          <% end %>
+          
+          <div style="display: inline-flex; align-items: center; gap: 8px; background-color: #2d4a3e; padding: 12px 32px; border-radius: 9999px;">
+            <span style="color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 300;">
+              <%= @coffee.rating %><span style="font-size: 20px; opacity: 0.7;">/10</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Roast Level Bar -->
+        <div style="margin-bottom: 32px;">
+          <% if @coffee.roast_level.present? %>
+            <div style="margin-bottom: 24px;">
+              <p style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 12px 0; text-align: center;">
+                Roast Level: <%= @coffee.roast_level_text %>
+              </p>
+              
+              <!-- Visual Roast Bar -->
+              <div style="max-width: 500px; margin: 0 auto;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 300;">Light</span>
+                  <span style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 300;">Dark</span>
+                </div>
+                
+                <!-- The Bar -->
+                <div style="position: relative; height: 12px; background: linear-gradient(to right, #f5deb3 0%, #d2b48c 25%, #8b6f47 50%, #654321 75%, #3e2723 100%); border-radius: 6px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);">
+                  <!-- The Marker -->
+                  <% roast_value = @coffee.roast_level.to_i %>
+                  <div style="position: absolute; top: 50%; left: <%= ((roast_value - 1) / 9.0 * 100).round(1) %>%; transform: translate(-50%, -50%); width: 20px; height: 20px; background-color: #2d4a3e; border: 3px solid #f5f1e8; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>
+                </div>
+                
+                <p style="color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 300; margin: 8px 0 0 0; text-align: center;">
+                  <%= roast_value %>/10
+                </p>
               </div>
             </div>
           <% end %>
           
+          <!-- Other Details -->
           <% if @coffee.date_tried.present? %>
-            <div>
-              <p class="text-sm text-gray-500 font-semibold mb-1">Date Tried</p>
-              <div class="flex items-center gap-2">
-                <span>📅</span>
-                <span class="text-xl font-semibold"><%= @coffee.date_tried.strftime("%B %d, %Y") %></span>
-              </div>
+            <div style="text-align: center; padding-top: 24px; border-top: 1px solid #d4c4a8;">
+              <p style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0;">Date Tried</p>
+              <p style="color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 300; margin: 0;">
+                <%= @coffee.date_tried.strftime("%b %d, %Y") %>
+              </p>
             </div>
           <% end %>
         </div>
 
-        <% if @coffee.tasting_notes.present? %>
-          <div class="mb-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-2">Tasting Notes</h3>
-            <p class="text-gray-700 leading-relaxed"><%= @coffee.tasting_notes %></p>
-          </div>
-        <% end %>
-
-        <div class="flex gap-4">
+        <!-- Actions -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; padding-top: 32px; border-top: 1px solid #d4c4a8;">
           <% if @coffee.website_url.present? %>
-            <%= link_to @coffee.website_url, target: "_blank", rel: "noopener", class: "bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors" do %>
-              🔗 Visit Website
+            <%= link_to @coffee.website_url, target: "_blank", rel: "noopener", style: "display: inline-block; background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 12px 24px; border-radius: 8px; text-decoration: none;" do %>
+              Visit Roaster →
             <% end %>
           <% end %>
           
-          <%= link_to "Edit", edit_coffee_path(@coffee), class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors" %>
-          <%= link_to "Back", coffees_path, class: "bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors" %>
-        </div>
-
-        <div class="mt-6">
-          <%= button_to "Delete", coffee_path(@coffee), method: :delete, data: { confirm: "Are you sure you want to delete this coffee?" }, class: "w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition-colors" %>
+          <%= link_to "Edit", edit_coffee_path(@coffee), style: "display: inline-block; background-color: #5a7c69; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 12px 24px; border-radius: 8px; text-decoration: none;" %>
+          
+          <%= button_to "Delete", coffee_path(@coffee), method: :delete, data: { confirm: "Delete this review?" }, style: "background-color: #8b6f47; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer;" %>
         </div>
       </div>
     </div>
   </div>
+
 </div>
