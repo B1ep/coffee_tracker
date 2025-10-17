@@ -7,12 +7,14 @@ local:
   root: <%= Rails.root.join("storage") %>
 
 # Use environment variables for AWS credentials in production
+# Works with S3, Cloudflare R2, or any S3-compatible service
 amazon:
   service: S3
   access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
   region: <%= ENV.fetch('AWS_REGION', 'us-east-1') %>
   bucket: <%= ENV.fetch('AWS_BUCKET', 'coffee-tracker-production') %>
+  endpoint: <%= ENV['AWS_ENDPOINT'] if ENV['AWS_ENDPOINT'].present? %>
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
