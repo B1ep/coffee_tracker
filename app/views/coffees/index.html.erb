@@ -6,11 +6,11 @@
       <!-- Admin Login/Logout (Top Right) -->
       <div style="position: absolute; top: 16px; right: 16px;">
         <% if admin_authenticated? %>
-          <%= button_to admin_admin_logout_path, method: :delete, style: "background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px;" do %>
+          <%= button_to admin_logout_path, method: :delete, style: "background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px;" do %>
             Logout (Admin)
           <% end %>
         <% else %>
-          <%= link_to "Admin Login", admin_admin_login_path, style: "display: inline-block; background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 14px;" %>
+          <%= link_to "Admin Login", admin_login_path, style: "display: inline-block; background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 14px;" %>
         <% end %>
       </div>
 
