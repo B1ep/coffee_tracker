@@ -16,8 +16,6 @@ amazon:
   bucket: <%= ENV.fetch('AWS_BUCKET', 'coffee-tracker-production') %>
   endpoint: <%= ENV['AWS_ENDPOINT'] if ENV['AWS_ENDPOINT'].present? %>
   force_path_style: true
-  upload:
-    content_md5: false
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
