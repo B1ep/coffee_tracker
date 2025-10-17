@@ -3,6 +3,17 @@
   <!-- Brown Header - Full Width -->
   <div style="background-color: #8b6f47; width: 100%; padding: 80px 24px;">
     <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+      <!-- Admin Login/Logout (Top Right) -->
+      <div style="position: absolute; top: 16px; right: 16px;">
+        <% if admin_authenticated? %>
+          <%= button_to admin_admin_logout_path, method: :delete, style: "background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px;" do %>
+            Logout (Admin)
+          <% end %>
+        <% else %>
+          <%= link_to "Admin Login", admin_admin_login_path, style: "display: inline-block; background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 14px;" %>
+        <% end %>
+      </div>
+
       <h1 style="color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-size: 96px; font-weight: 700; margin: 0 0 24px 0; letter-spacing: -2px;">
         COLIN'S COFFEE
       </h1>
@@ -16,12 +27,14 @@
   <div style="background-color: #a8c5a0; width: 100%; padding: 48px 24px; min-height: 100vh;">
     <div style="max-width: 900px; margin: 0 auto;">
       
-      <!-- Add New Coffee Button -->
-      <div style="text-align: center; margin-bottom: 48px;">
-        <%= link_to new_coffee_path, style: "display: inline-block; background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding: 12px 32px; border-radius: 8px; text-decoration: none; transition: opacity 0.2s;" do %>
-          + Add New Coffee
-        <% end %>
-      </div>
+      <!-- Add New Coffee Button (Admin Only) -->
+      <% if admin_authenticated? %>
+        <div style="text-align: center; margin-bottom: 48px;">
+          <%= link_to new_coffee_path, style: "display: inline-block; background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; font-weight: 400; padding: 12px 32px; border-radius: 8px; text-decoration: none; transition: opacity 0.2s;" do %>
+            + Add New Coffee
+          <% end %>
+        </div>
+      <% end %>
 
       <!-- Empty State -->
       <% if @coffees.empty? %>
@@ -40,12 +53,14 @@
       <% @coffees.each do |coffee| %>
         <div style="background-color: #f5f1e8; border-radius: 16px; padding: 32px; margin-bottom: 48px; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           
-          <!-- Edit Button (Top Right) -->
-          <div style="position: absolute; top: 16px; right: 16px;">
-            <%= link_to edit_coffee_path(coffee), style: "display: inline-block; background-color: #5a7c69; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 14px;" do %>
-              Edit
-            <% end %>
-          </div>
+          <!-- Edit Button (Top Right) - Admin Only -->
+          <% if admin_authenticated? %>
+            <div style="position: absolute; top: 16px; right: 16px;">
+              <%= link_to edit_coffee_path(coffee), style: "display: inline-block; background-color: #5a7c69; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 14px;" do %>
+                Edit
+              <% end %>
+            </div>
+          <% end %>
 
           <!-- Image (Centered) -->
           <div style="text-align: center; margin-bottom: 24px;">
