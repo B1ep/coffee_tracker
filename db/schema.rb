@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_08_003026) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_17_143243) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,7 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_08_003026) do
     t.string "origin"
     t.string "roast_level"
     t.text "tasting_notes"
-    t.integer "rating"
+    t.decimal "rating", precision: 3, scale: 1
     t.string "website_url"
     t.date "date_tried"
     t.datetime "created_at", null: false
