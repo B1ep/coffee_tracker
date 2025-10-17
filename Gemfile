@@ -37,6 +37,9 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Add Image Upload Support
 gem 'image_processing', '~> 1.2'
 
+# AWS S3 for Active Storage in production
+gem "aws-sdk-s3", require: false
+
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
 gem "solid_queue"
