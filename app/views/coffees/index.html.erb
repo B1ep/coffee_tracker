@@ -26,7 +26,52 @@
   <!-- Light Green Content - Full Width -->
   <div style="background-color: #a8c5a0; width: 100%; padding: 48px 24px; min-height: 100vh;">
     <div style="max-width: 900px; margin: 0 auto;">
-      
+
+      <!-- Sort Controls -->
+      <div style="text-align: right; margin-bottom: 32px;">
+        <div style="position: relative; display: inline-block;">
+          <button id="sortByButton" type="button" style="background-color: #2d4a3e; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 400;">
+            Sort By ▼
+          </button>
+          <div id="sortDropdown" style="display: none; position: absolute; right: 0; top: 100%; margin-top: 8px; background-color: #f5f1e8; padding: 16px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; min-width: 180px;">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <%= link_to "Date Tried ↓", coffees_path(sort_by: 'date_tried', sort_order: 'desc'), style: "display: block; background-color: #{params[:sort_by] == 'date_tried' && params[:sort_order] == 'desc' ? '#2d4a3e' : '#8b6f47'}; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; text-align: center; white-space: nowrap;" %>
+
+              <%= link_to "Date Tried ↑", coffees_path(sort_by: 'date_tried', sort_order: 'asc'), style: "display: block; background-color: #{params[:sort_by] == 'date_tried' && params[:sort_order] == 'asc' ? '#2d4a3e' : '#8b6f47'}; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; text-align: center; white-space: nowrap;" %>
+
+              <%= link_to "Rating ↓", coffees_path(sort_by: 'rating', sort_order: 'desc'), style: "display: block; background-color: #{params[:sort_by] == 'rating' && params[:sort_order] == 'desc' ? '#2d4a3e' : '#8b6f47'}; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; text-align: center; white-space: nowrap;" %>
+
+              <%= link_to "Rating ↑", coffees_path(sort_by: 'rating', sort_order: 'asc'), style: "display: block; background-color: #{params[:sort_by] == 'rating' && params[:sort_order] == 'asc' ? '#2d4a3e' : '#8b6f47'}; color: #f5f1e8; font-family: Helvetica, Arial, sans-serif; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; text-align: center; white-space: nowrap;" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function() {
+          const sortButton = document.getElementById('sortByButton');
+          const dropdown = document.getElementById('sortDropdown');
+
+          if (sortButton && dropdown) {
+            sortButton.addEventListener('click', function(event) {
+              event.stopPropagation();
+              if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                dropdown.style.display = 'block';
+              } else {
+                dropdown.style.display = 'none';
+              }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+              if (!sortButton.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+              }
+            });
+          }
+        })();
+      </script>
+
       <!-- Add New Coffee Button (Admin Only) -->
       <% if admin_authenticated? %>
         <div style="text-align: center; margin-bottom: 48px;">
