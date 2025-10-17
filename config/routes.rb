@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
     # Data import (one-time use)
     get 'import', to: 'data#import', as: 'import'
+    get 'upload', to: 'data#upload_form', as: 'upload'
+    post 'upload', to: 'data#upload_image', as: 'upload_image'
   end
 end

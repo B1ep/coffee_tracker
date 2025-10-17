@@ -25,11 +25,40 @@ class Admin::DataController < ApplicationController
 
     begin
       coffee = Coffee.create!(coffee_data)
-      @message = "Successfully imported coffee: #{coffee.name}. Total coffees in database: #{Coffee.count}"
+      @message = "Successfully imported coffee: #{coffee.name}. Total coffees in database: #{Coffee.count}. Note: Image must be uploaded manually via Edit."
       @status = :success
     rescue => e
       @message = "Error importing data: #{e.message}"
       @status = :error
     end
+  end
+
+  def upload_form
+    @coffee = Coffee.first
+    if @coffee.nil?
+      redirect_to admin_import_path, alert: "No coffee found. Please import data first."
+    end
+  end
+
+  def upload_image
+    @coffee = Coffee.first
+
+    if @coffee.nil?
+      @message = "No coffee found. Please import data first."
+      @status = :error
+      render :upload_form
+      return
+    end
+
+    if params[:image].present?
+      @coffee.image.attach(params[:image])
+      @message = "Image uploaded successfully!"
+      @status = :success
+    else
+      @message = "No image file selected."
+      @status = :error
+    end
+
+    render :upload_form
   end
 end
