@@ -1,4 +1,8 @@
 class Admin::DataController < ApplicationController
+  # HTTP Basic Authentication - First layer of security
+  http_basic_authenticate_with name: ENV.fetch('ADMIN_USERNAME', 'blep'),
+                                password: ENV.fetch('ADMIN_HTTP_PASSWORD', 'brooklyn-celtics-espresso')
+
   before_action :authenticate_admin
 
   def import

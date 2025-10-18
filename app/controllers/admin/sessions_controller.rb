@@ -1,9 +1,14 @@
 class Admin::SessionsController < ApplicationController
+  # HTTP Basic Authentication - First layer of security
+  http_basic_authenticate_with name: ENV.fetch('ADMIN_USERNAME', 'blep'),
+                                password: ENV.fetch('ADMIN_HTTP_PASSWORD', 'brooklyn-celtics-espresso')
+
   def new
     # Show login form
   end
 
   def create
+    # Session password - Second layer of security
     admin_password = ENV['ADMIN_PASSWORD'] || 'changeme123'
 
     if params[:password] == admin_password
