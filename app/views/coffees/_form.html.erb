@@ -13,34 +13,44 @@
   <% end %>
 
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-    
+
     <div>
-      <%= form.label :name, "Coffee Name", style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
-      <%= form.text_field :name, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;", placeholder: "Ethiopian Yirgacheffe" %>
+      <%= form.label :name, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+        Coffee Name <span style="color: #c94b4b;">*</span>
+      <% end %>
+      <%= form.text_field :name, required: true, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;", placeholder: "Ethiopian Yirgacheffe" %>
     </div>
 
     <div>
-      <%= form.label :roaster, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
-      <%= form.text_field :roaster, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;", placeholder: "Blue Bottle Coffee" %>
+      <%= form.label :roaster, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+        Roaster <span style="color: #c94b4b;">*</span>
+      <% end %>
+      <%= form.text_field :roaster, required: true, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;", placeholder: "Blue Bottle Coffee" %>
     </div>
 
     <div>
-      <%= form.label :origin, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
-      <%= form.text_field :origin, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;", placeholder: "Ethiopia" %>
+      <%= form.label :origin, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+        Origin <span style="color: #c94b4b;">*</span>
+      <% end %>
+      <%= form.text_field :origin, required: true, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;", placeholder: "Ethiopia" %>
     </div>
 
     <div>
-      <%= form.label :date_tried, "Date Tried", style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
-      <%= form.date_field :date_tried, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;" %>
+      <%= form.label :date_tried, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+        Date Tried <span style="color: #c94b4b;">*</span>
+      <% end %>
+      <%= form.date_field :date_tried, required: true, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;" %>
     </div>
   </div>
 
   <!-- Roast Level Slider -->
   <div>
-    <%= form.label :roast_level, "Roast Level", style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
+    <%= form.label :roast_level, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+      Roast Level <span style="color: #c94b4b;">*</span>
+    <% end %>
     <div style="display: flex; align-items: center; gap: 16px;">
       <span style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 300;">Light</span>
-      <%= form.range_field :roast_level, in: 1..10, value: coffee.roast_level || 5, style: "flex: 1; height: 8px; border-radius: 4px; background: linear-gradient(to right, #f5deb3, #8b6f47, #3e2723); appearance: none; outline: none;", oninput: "document.getElementById('roast_value').innerText = this.value" %>
+      <%= form.range_field :roast_level, in: 1..10, value: coffee.roast_level || 5, required: true, style: "flex: 1; height: 8px; border-radius: 4px; background: linear-gradient(to right, #f5deb3, #8b6f47, #3e2723); appearance: none; outline: none;", oninput: "document.getElementById('roast_value').innerText = this.value" %>
       <span style="color: #8b6f47; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 300;">Dark</span>
       <span id="roast_value" style="color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; min-width: 30px; text-align: center;"><%= coffee.roast_level || 5 %></span>
     </div>
@@ -48,26 +58,34 @@
 
   <!-- Rating Slider -->
   <div>
-    <%= form.label :rating, "Rating", style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
+    <%= form.label :rating, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+      Rating <span style="color: #c94b4b;">*</span>
+    <% end %>
     <div style="display: flex; align-items: center; gap: 16px;">
-      <%= form.range_field :rating, in: 1..10, step: 0.1, value: coffee.rating || 5, style: "flex: 1; height: 8px; border-radius: 4px; background: linear-gradient(to right, #e8dcc4, #5a7c69, #2d4a3e); appearance: none; outline: none;", oninput: "document.getElementById('rating_value').innerText = parseFloat(this.value).toFixed(1)" %>
+      <%= form.range_field :rating, in: 1..10, step: 0.1, value: coffee.rating || 5, required: true, style: "flex: 1; height: 8px; border-radius: 4px; background: linear-gradient(to right, #e8dcc4, #5a7c69, #2d4a3e); appearance: none; outline: none;", oninput: "document.getElementById('rating_value').innerText = parseFloat(this.value).toFixed(1)" %>
       <span id="rating_value" style="color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 400; min-width: 60px; text-align: center;"><%= coffee.rating&.to_f&.round(1) || 5.0 %>/10</span>
     </div>
   </div>
 
   <div>
-    <%= form.label :website_url, "Roaster Website", style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
-    <%= form.url_field :website_url, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;", placeholder: "https://roaster.com" %>
+    <%= form.label :website_url, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+      Roaster Website <span style="color: #c94b4b;">*</span>
+    <% end %>
+    <%= form.url_field :website_url, required: true, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;", placeholder: "https://roaster.com" %>
   </div>
 
   <div>
-    <%= form.label :tasting_notes, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
-    <%= form.text_area :tasting_notes, rows: 5, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.5;", placeholder: "Notes on flavor, aroma, body..." %>
+    <%= form.label :tasting_notes, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+      Tasting Notes <span style="color: #c94b4b;">*</span>
+    <% end %>
+    <%= form.text_area :tasting_notes, rows: 5, required: true, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.5;", placeholder: "Notes on flavor, aroma, body..." %>
   </div>
 
   <div>
-    <%= form.label :image, "Upload Image", style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" %>
-    <%= form.file_field :image, accept: "image/*", style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;" %>
+    <%= form.label :image, style: "display: block; color: #5a7c69; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;" do %>
+      Upload Image <span style="color: #c94b4b;">*</span>
+    <% end %>
+    <%= form.file_field :image, accept: "image/*", required: coffee.image.blank?, style: "width: 100%; padding: 12px 16px; border-radius: 12px; border: 2px solid #d4c4a8; background-color: #f5f1e8; color: #2d4a3e; font-family: Helvetica, Arial, sans-serif; font-size: 16px;" %>
     <% if coffee.image.attached? %>
       <div style="margin-top: 16px; text-align: center;">
         <%= image_tag coffee.image, style: "max-height: 200px; width: auto; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" %>
