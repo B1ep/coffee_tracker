@@ -4,14 +4,14 @@ class CoffeesController < ApplicationController
 
   # GET /coffees or /coffees.json
   def index
-    sort_by = params[:sort_by] || 'created_at'
+    sort_by = params[:sort_by] || 'date_tried'
     sort_order = params[:sort_order] || 'desc'
 
     # Sanitize sort parameters to prevent SQL injection
     valid_sort_columns = ['date_tried', 'rating', 'created_at']
     valid_sort_orders = ['asc', 'desc']
 
-    sort_by = 'created_at' unless valid_sort_columns.include?(sort_by)
+    sort_by = 'date_tried' unless valid_sort_columns.include?(sort_by)
     sort_order = 'desc' unless valid_sort_orders.include?(sort_order)
 
     @coffees = Coffee.order("#{sort_by} #{sort_order}")
