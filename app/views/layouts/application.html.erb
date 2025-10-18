@@ -7,18 +7,20 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="<%= content_for(:title) || "Coffee Tracker" %>">
-    <meta property="og:description" content="Track and rate your favorite coffee experiences. Discover new roasts, record tasting notes, and build your personal coffee journey.">
+    <meta property="og:title" content="<%= content_for(:title) || "Colin's Coffee" %>">
+    <meta property="og:description" content="Track and rate your favorite coffee experiences. Brewing in Park Slope, Brooklyn.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= request.original_url %>">
-    <meta property="og:image" content="<%= request.base_url %>/icon.png">
-    <meta property="og:site_name" content="Coffee Tracker">
+    <meta property="og:image" content="<%= request.base_url %>/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Colin's Coffee">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<%= content_for(:title) || "Coffee Tracker" %>">
-    <meta name="twitter:description" content="Track and rate your favorite coffee experiences. Discover new roasts, record tasting notes, and build your personal coffee journey.">
-    <meta name="twitter:image" content="<%= request.base_url %>/icon.png">
+    <meta name="twitter:title" content="<%= content_for(:title) || "Colin's Coffee" %>">
+    <meta name="twitter:description" content="Track and rate your favorite coffee experiences. Brewing in Park Slope, Brooklyn.">
+    <meta name="twitter:image" content="<%= request.base_url %>/og-image.png">
 
     <!-- Apple-specific Meta Tags -->
     <meta name="apple-mobile-web-app-title" content="Coffee Tracker">
@@ -28,8 +30,9 @@
     <%= yield :head %>
 
     <!-- Favicon with Coffee Emoji -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
-    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="/icon.png" type="image/png" sizes="512x512">
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
